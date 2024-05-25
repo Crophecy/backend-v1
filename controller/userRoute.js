@@ -1,10 +1,48 @@
 const express = require("express");
 const userRoute= express.Router();
 const userSchema = require('../model/userSchema');
+const nodemailer = require('nodemailer');
 
 
 
+userRoute.post('/contact', async (req, res) => {
+  try {
+    const { name, email, contact ,query } = req.body;
 
+    // Create a transporter
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
+    auth: {
+      user: 'apicheck11@gmail.com',
+      pass: 'xjex rlsk vjvj ybne'
+    }
+    });
+
+    // Define the email options
+    const mailOptions = {
+      from: 'apicheck11@gmail.com',
+      to: 'manyrishabh@gmail.com',
+      subject: 'New Contact Form Submission',
+      text: `Name: ${name}\nEmail: ${email}\n Contact_no : ${contact} Message: ${query}`,
+    };
+
+    // Send the email
+    await transporter.sendMail(mailOptions);
+
+    res.status(200).json({
+      success: true,
+      message: 'Email sent successfully',
+     
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      error,
+    });
+  }
+});
 
 userRoute.post('/register', async (req, res) => {
     console.log("clicked");

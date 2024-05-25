@@ -38,9 +38,12 @@ ml.post('/predict', async (req, res) => {
 
         // Parse the response from Flask server
         const flaskData = await flaskResponse.json();
-
+        console.log(flaskData.url);
+        console.log(flaskData.img_url);
         // Send the Flask server response back to the React frontend
-        res.json(flaskData);
+        // res.json(flaskData.url); ye abhi badla h 
+
+          res.json(flaskData);
     } catch (error) {
         console.error('Error:', error);
         res.status(500).send('Internal Server Error');
