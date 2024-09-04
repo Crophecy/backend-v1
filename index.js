@@ -6,7 +6,7 @@ const userRoute = require("./controller/userRoute");
 const app = express();
 const ml = require("./controller/ml");
 mongoose.set("strictQuery",true);
-mongoose.connect("mongodb+srv://manyrishabh:hack123@cluster0.r8nobs1.mongodb.net/");
+mongoose.connect("mongodb+srv://manyrishabh:123@crophecy.ovy3y.mongodb.net/");
 var db = mongoose.connection;
 db.on("open",()=>console.log("Connected to DB"));
 db.on("error",()=>console.log("Error occurred"));
